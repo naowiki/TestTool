@@ -4,6 +4,8 @@
 #include <QDropEvent>
 #include <QMimeData>
 #include <QUrl>
+#include <QtXml>
+#include <QDomDocument>
 #include "ui_TestTool.h"
 
 class TestTool : public QMainWindow
@@ -15,6 +17,12 @@ public:
 	void dragEnterEvent(QDragEnterEvent *e);
 	void dropEvent(QDropEvent *e);
 
+	QStringList m_testIDList;
+	QStringList m_resultList;
+
 private:
 	Ui::TestToolClass ui;
+	void initTable();
+	void insertRow(int row, int column, QString item);
+	bool analyzeXml(bool bDrop);
 };

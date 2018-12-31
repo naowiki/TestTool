@@ -6,6 +6,7 @@
 #include <QUrl>
 #include <QtXml>
 #include <QDomDocument>
+#include <QFileDialog>
 #include "ui_TestTool.h"
 
 class TestTool : public QMainWindow
@@ -24,5 +25,9 @@ private:
 	Ui::TestToolClass ui;
 	void initTable();
 	void insertRow(int row, int column, QString item);
-	bool analyzeXml(bool bDrop);
+    bool analyzeXml(bool bDrop);
+
+private slots:
+    void slotRefBtnClicked();
+    void slotAnalyzeBtnClicked();
 };

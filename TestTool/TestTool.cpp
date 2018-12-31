@@ -16,6 +16,11 @@ TestTool::TestTool(QWidget *parent)
 	ui.setupUi(this);
 	setAcceptDrops(true);
 
+    connect( ui.RefBtn, SIGNAL( clicked() ),
+             this,      SLOT( slotRefBtnClicked() ) );
+    connect( ui.analyzeBtn, SIGNAL( clicked() ),
+             this,          SLOT( slotAnalyzeBtnClicked() ) );
+
 	initTable();
 }
 
@@ -48,7 +53,6 @@ void TestTool::dropEvent(QDropEvent *e)
 
 void TestTool::initTable()
 {
-	ui.filePathLbl->setText(QString::fromLocal8Bit("ﾌｧｲﾙﾊﾟｽ:"));
 	ui.tableWidget->setColumnCount( 6 );
 	ui.tableWidget->setRowCount( 0 );
 }
@@ -79,4 +83,31 @@ bool TestTool::analyzeXml(bool bDrop)
 	}
 
 	return true;
+}
+
+void TestTool::slotRefBtnClicked()
+{
+    QString selFilter = tr("*.xml");
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("ファイルを選択する"),
+        "/Users",
+        tr("*.xml"),
+        &selFilter,
+        QFileDialog::DontUseCustomDirectoryIcons
+    );
+
+    if (fileName.isEmpty()) {
+        // キャンセル
+    } else {
+        ui.filePathLineEdit->setText(fileName);
+    }
+}
+
+void TestTool::slotAnalyzeBtnClicked()
+{
+    if (!ui.filePathLineEdit->text().isEmpty())
+    {
+        analyzeXml(false);
+    }
 }

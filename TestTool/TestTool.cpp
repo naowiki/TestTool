@@ -40,14 +40,8 @@ void TestTool::dropEvent(QDropEvent *e)
 	//ドロップの際の動作を記述する
 	ui.filePathLineEdit->setText(e->mimeData()->urls().first().toLocalFile());
 	if (analyzeXml(true))
-	{
-		int currentRow = ui.tableWidget->rowCount();
-		for (int i=0; i < m_testIDList.count(); i++)
-		{
-			ui.tableWidget->setRowCount(i + 1);
-			insertRow(currentRow + i, COLUMN_RESULT, m_resultList.at(i));
-			insertRow(currentRow + i, COLUMN_SUITE, m_testIDList.at(i));
-		}
+    {
+        updateTableRow();
 	}
 }
 
@@ -55,6 +49,7 @@ void TestTool::initTable()
 {
 	ui.tableWidget->setColumnCount( 6 );
 	ui.tableWidget->setRowCount( 0 );
+    l.clear();
 }
 
 void TestTool::insertRow(int nRow, int nColumn, QString item)
@@ -64,6 +59,8 @@ void TestTool::insertRow(int nRow, int nColumn, QString item)
 
 bool TestTool::analyzeXml(bool bDrop)
 {
+    initTable();
+
 	QString filePath;
 	filePath = ui.filePathLineEdit->text();
 	QFile file(filePath);
@@ -78,9 +75,9 @@ bool TestTool::analyzeXml(bool bDrop)
 	QDomNodeList domList = domDocument.elementsByTagName("item");
 	for ( int i = 0; i < domList.count(); i++ )
 	{
-		m_testIDList << domList.at(i).firstChildElement("name").toElement().text();
-		m_resultList << domList.at(i).firstChildElement("result").toElement().text();
-	}
+        l.push_back(makeNewLogData( domList.at(i).firstChildElement("result").toElement().text(),
+                                    domList.at(i).toElement().text() ) );
+    }
 
 	return true;
 }
@@ -108,6 +105,29 @@ void TestTool::slotAnalyzeBtnClicked()
 {
     if (!ui.filePathLineEdit->text().isEmpty())
     {
-        analyzeXml(false);
+        if (analyzeXml(false))
+        {
+            updateTableRow();
+        }
+    }
+}
+
+logdata_t TestTool::makeNewLogData(QString result, QString log)
+{
+    logdata_t log_temp;
+    log_temp.strResult=result;
+    log_temp.strLog=log;
+
+    return log_temp;
+}
+
+void TestTool::updateTableRow()
+{
+    int currentRow = ui.tableWidget->rowCount();
+    for (int i = 0; i < l.count(); i++)
+    {
+        ui.tableWidget->setRowCount(i + 1);
+        insertRow(currentRow + i, COLUMN_RESULT, l.at(i).strResult);
+        insertRow(currentRow + i, COLUMN_SUITE, l.at(i).strLog);
     }
 }

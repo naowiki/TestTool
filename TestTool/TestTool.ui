@@ -23,6 +23,36 @@
       <height>401</height>
      </rect>
     </property>
+    <column>
+     <property name="text">
+      <string>アプリ</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>スイート</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ケース</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>結果</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ログ</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>備考</string>
+     </property>
+    </column>
    </widget>
    <widget class="QLabel" name="filePathLbl">
     <property name="geometry">

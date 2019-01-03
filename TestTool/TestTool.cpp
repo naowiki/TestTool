@@ -20,8 +20,13 @@ TestTool::TestTool(QWidget *parent)
              this,      SLOT( slotRefBtnClicked() ) );
     connect( ui.analyzeBtn, SIGNAL( clicked() ),
              this,          SLOT( slotAnalyzeBtnClicked() ) );
+	connect( ui.tableWidget, SIGNAL(cellDoubleClicked(int, int)),
+			 this,			 SLOT(tableItemClicked(int, int)));
+	connect( ui.tableWidget, SIGNAL(currentCellChanged(int, int, int, int)),
+			 this,			 SLOT(tableItemChanged(int, int, int, int)));
 
 	initTable();
+	ui.tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // ï“èWã÷é~
 }
 
 void TestTool::dragEnterEvent(QDragEnterEvent *e)
@@ -122,8 +127,8 @@ logdata_t TestTool::makeNewLogData(QString app, QString tstcase, QString suite, 
 	log_temp.strApp = app;
 	log_temp.strCase = tstcase;
 	log_temp.strSuite = suite;
-    log_temp.strResult=result;
-    log_temp.strLog=log;
+    log_temp.strResult = result;
+    log_temp.strLog = log;
 	log_temp.strOther = other;
 
     return log_temp;
@@ -141,4 +146,14 @@ void TestTool::updateTableRow()
 		insertRow(i, COLUMN_LOG,    l.at(i).strLog);
 		insertRow(i, COLUMN_OTHER,  l.at(i).strOther);
     }
+}
+
+void TestTool::tableItemClicked(int nRow, int nCol)
+{
+
+}
+
+void TestTool::tableItemChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+
 }

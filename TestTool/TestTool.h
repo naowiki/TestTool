@@ -40,4 +40,6 @@ private:
 private slots:
     void slotRefBtnClicked();
     void slotAnalyzeBtnClicked();
+	void tableItemClicked(int nRow, int nCol);
+	void tableItemChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 };

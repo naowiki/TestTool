@@ -6,102 +6,107 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>TestTool</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>70</y>
-      <width>621</width>
-      <height>401</height>
-     </rect>
-    </property>
-    <column>
-     <property name="text">
-      <string>アプリ</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>スイート</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>ケース</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>結果</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>ログ</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>備考</string>
-     </property>
-    </column>
-   </widget>
-   <widget class="QLabel" name="filePathLbl">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>15</y>
-      <width>50</width>
-      <height>12</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>ﾌｧｲﾙﾊﾟｽ:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="filePathLineEdit">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
       <y>10</y>
-      <width>521</width>
-      <height>20</height>
+      <width>681</width>
+      <height>481</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QPushButton" name="RefBtn">
-    <property name="geometry">
-     <rect>
-      <x>586</x>
-      <y>6</y>
-      <width>51</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>…</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="analyzeBtn">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>34</y>
-      <width>71</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>解析</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="filePathLbl">
+         <property name="text">
+          <string>ﾌｧｲﾙﾊﾟｽ:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="filePathLineEdit"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="RefBtn">
+         <property name="text">
+          <string>…</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="analyzeBtn">
+         <property name="text">
+          <string>解析</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tableWidget">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <column>
+        <property name="text">
+         <string>アプリ</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>スイート</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>ケース</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>結果</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>ログ</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>備考</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

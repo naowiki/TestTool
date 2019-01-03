@@ -75,8 +75,12 @@ bool TestTool::analyzeXml(bool bDrop)
 	QDomNodeList domList = domDocument.elementsByTagName("item");
 	for ( int i = 0; i < domList.count(); i++ )
 	{
-        l.push_back(makeNewLogData( domList.at(i).firstChildElement("result").toElement().text(),
-                                    domList.at(i).toElement().text() ) );
+		l.push_back( makeNewLogData( "",
+									 "",
+									 domList.at(i).toElement().attributeNode("id").value(),
+									 domList.at(i).firstChildElement("result").text(),
+									 domList.at(i).firstChildElement("name").text(),
+									 "" ) );
     }
 
 	return true;
@@ -112,22 +116,29 @@ void TestTool::slotAnalyzeBtnClicked()
     }
 }
 
-logdata_t TestTool::makeNewLogData(QString result, QString log)
+logdata_t TestTool::makeNewLogData(QString app, QString tstcase, QString suite, QString result, QString log, QString other)
 {
     logdata_t log_temp;
+	log_temp.strApp = app;
+	log_temp.strCase = tstcase;
+	log_temp.strSuite = suite;
     log_temp.strResult=result;
     log_temp.strLog=log;
+	log_temp.strOther = other;
 
     return log_temp;
 }
 
 void TestTool::updateTableRow()
 {
-    int currentRow = ui.tableWidget->rowCount();
     for (int i = 0; i < l.count(); i++)
     {
         ui.tableWidget->setRowCount(i + 1);
-        insertRow(currentRow + i, COLUMN_RESULT, l.at(i).strResult);
-        insertRow(currentRow + i, COLUMN_SUITE, l.at(i).strLog);
+        insertRow(i, COLUMN_APP,    l.at(i).strApp);
+		insertRow(i, COLUMN_CASE,   l.at(i).strCase);
+		insertRow(i, COLUMN_SUITE,  l.at(i).strSuite);
+		insertRow(i, COLUMN_RESULT, l.at(i).strResult);
+		insertRow(i, COLUMN_LOG,    l.at(i).strLog);
+		insertRow(i, COLUMN_OTHER,  l.at(i).strOther);
     }
 }

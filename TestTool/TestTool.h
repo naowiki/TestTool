@@ -32,7 +32,7 @@ private:
 	void initTable();
 	void insertRow(int row, int column, QString item);
     bool analyzeXml(bool bDrop);
-    logdata_t makeNewLogData(QString result, QString log);
+    logdata_t makeNewLogData(QString app, QString tstcase, QString suite, QString result, QString log, QString other);
     void updateTableRow();
 
     QVector<logdata_t> l;

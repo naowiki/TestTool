@@ -44,7 +44,7 @@ void TestTool::dropEvent(QDropEvent *e)
 	//dragEnterEventの後にくるイベント
 	//ドロップの際の動作を記述する
 	ui.filePathLineEdit->setText(e->mimeData()->urls().first().toLocalFile());
-	if (analyzeXml(true))
+    if (analyzeXml())
     {
         updateTableRow();
 	}
@@ -62,7 +62,7 @@ void TestTool::insertRow(int nRow, int nColumn, QString item)
 	ui.tableWidget->setItem( nRow, nColumn, new QTableWidgetItem(item));
 }
 
-bool TestTool::analyzeXml(bool bDrop)
+bool TestTool::analyzeXml()
 {
     initTable();
 
@@ -93,10 +93,10 @@ bool TestTool::analyzeXml(bool bDrop)
 
 void TestTool::slotRefBtnClicked()
 {
-    QString selFilter = tr("*.xml");
+    QString selFilter = "*.xml";
     QString fileName = QFileDialog::getOpenFileName(
         this,
-        tr("ファイルを選択する"),
+        "ファイルを選択",
         "/Users",
         tr("*.xml"),
         &selFilter,
@@ -114,7 +114,7 @@ void TestTool::slotAnalyzeBtnClicked()
 {
     if (!ui.filePathLineEdit->text().isEmpty())
     {
-        if (analyzeXml(false))
+        if (analyzeXml())
         {
             updateTableRow();
         }

@@ -31,7 +31,7 @@ private:
 	Ui::TestToolClass ui;
 	void initTable();
 	void insertRow(int row, int column, QString item);
-    bool analyzeXml(bool bDrop);
+    bool analyzeXml();
     logdata_t makeNewLogData(QString app, QString tstcase, QString suite, QString result, QString log, QString other);
     void updateTableRow();
 

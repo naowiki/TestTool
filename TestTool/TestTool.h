@@ -35,6 +35,7 @@ private:
     logdata_t makeNewLogData(QString app, QString tstcase, QString suite, QString result, QString log, QString other);
     void updateTableRow();
 
+    int m_nRowCount;
     QVector<logdata_t> l;
 
 private slots:
@@ -42,4 +43,7 @@ private slots:
     void slotAnalyzeBtnClicked();
 	void tableItemClicked(int nRow, int nCol);
 	void tableItemChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+    void slotImageUpdated(int nCol);
+    void slotExtBtnClicked();
+    void slotFailChkBoxChanged();
 };

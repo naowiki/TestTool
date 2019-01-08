@@ -43,7 +43,7 @@ private slots:
     void slotAnalyzeBtnClicked();
     void tableItemClicked( int nRow, int nCol );
     void tableItemChanged( int currentRow, int currentColumn, int previousRow, int previousColumn );
-    void slotImageUpdated( int nCol );
+    void slotImageUpdated( int nRow );
     void slotExtBtnClicked();
     void slotFailChkBoxChanged();
 };

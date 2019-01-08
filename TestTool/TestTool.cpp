@@ -176,10 +176,10 @@ void TestTool::tableItemClicked( int nRow, int nCol )
 
 void TestTool::tableItemChanged( int currentRow, int currentColumn, int previousRow, int previousColumn )
 {
-    emit slotImageUpdated( currentColumn );
+    emit slotImageUpdated( currentRow );
 }
 
-void TestTool::slotImageUpdated( int nCol )
+void TestTool::slotImageUpdated( int nRow )
 {
     QImage *mImage = new QImage();
     mImage->load( "/Users/nao/Desktop/mario.png" );
